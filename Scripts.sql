@@ -33,6 +33,7 @@ WHERE customer_id IN
 	       (SELECT customer_id
                 FROM customers
                 WHERE points > 3000)
+		
 
 -- Customers in Virginia who spent more than $100
 
