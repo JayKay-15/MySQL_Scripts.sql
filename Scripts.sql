@@ -1,4 +1,4 @@
--- Return customer type (bronze, silver, gold) based on loyalty points
+-- Return customer type (bronze, silver, gold) based on loyalty points - UNION
 
 SELECT 
   customer_id,
@@ -114,7 +114,22 @@ FROM (
 ) AS sales_summary
 WHERE total_sales IS NOT NULL
 
--- 
+-- Return customer type (bronze, silver, gold) based on loyalty points - CASE WHEN
+
+SELECT 
+    CONCAT(first_name, " ", last_name) AS customer,
+    points,
+    CASE
+	WHEN points > 3000 THEN "Gold"
+        WHEN points >= 2000 THEN "Silver"
+        ELSE "Bronze"
+    END AS loyalty_category
+FROM customers
+ORDER BY points DESC
+
+--
+
+
 
 
 
