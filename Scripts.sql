@@ -66,6 +66,35 @@ WHERE customer_id IN (
     	WHERE product_id = 3
 )
 
+-- Get invoices larger than the client's average invoice
+SELECT *
+FROM invoices i
+WHERE invoice_total > (
+	SELECT AVG(invoice_total)
+	FROM invoices
+	WHERE client_id = i.client_id
+)
 
+-- List of products that have not been ordered
+SELECT *
+FROM products p
+WHERE NOT EXISTS (
+	SELECT *
+	FROM order_items
+	WHERE product_id = p.product_id
+)
+
+-- Subqueries in the SELECT clause; finding total, average, different sales
+
+SELECT 
+    client_id,
+    name,
+    (SELECT SUM(invoice_total) 
+	FROM invoices
+        WHERE client_id = c.client_id) AS total_sales,
+    (SELECT AVG(invoice_total)
+	FROM invoices) AS average,
+    (SELECT total_sales) - (SELECT average) AS difference
+FROM clients c
                 
-
+--
