@@ -127,6 +127,10 @@ SELECT
 FROM customers
 ORDER BY points DESC
 
+-- Create view
+
+
+
 -- Create a stored procedure
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_payments`(
