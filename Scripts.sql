@@ -170,7 +170,41 @@ UPDATE invoices i
 	WHERE i.client_id = client_id;
 END
 
+-- Trigger to update invoice table
+
+DELIMITER $$
+
+CREATE TRIGGER payments_after_insert
+    AFTER INSERT ON payments 
+    FOR EACH ROW 
+BEGIN
+    UPDATE invoices 
+    SET payment_total = payment_total + NEW.amount
+    WHERE invoice_id = NEW.invoice_id;
+END $$
+
+DELIMITER ;
+
+-- Trigger to remove amount when payment is deleted
+
+DELIMITER $$
+
+CREATE TRIGGER payments_after_delete
+    AFTER DELETE ON payments 
+    FOR EACH ROW 
+BEGIN
+    UPDATE invoices 
+    SET payment_total = payment_total - OLD.amount
+    WHERE invoice_id = OLD.invoice_id;
+END $$
+
+DELIMITER ;
+
 -- 
+
+
+
+
 
 
 
