@@ -200,10 +200,21 @@ END $$
 
 DELIMITER ;
 
+-- Creating events
+
+DELIMITER $$
+
+CREATE EVENT yearly_event_stale_audit_rows
+ON SCHEDULE 
+    EVERY 1 YEAR STARTS '2021-04-10' ENDS '2030-04-10'
+DO BEGIN
+    DELETE FROM payments_audit
+    WHERE action_date < NOW() - INTERVAL 1 YEAR;
+END $$
+
+DELIMITER ;
+
 -- 
-
-
-
 
 
 
