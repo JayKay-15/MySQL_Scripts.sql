@@ -233,8 +233,14 @@ CREATE TABLE IF NOT EXISTS customers
     points INT NOT NULL DEFAULT 0
 );
 
+-- Alter table
 
+ALTER TABLE customers
+    ADD secondary_phone VARCHAR (50) AFTER phone,
+    MODIFY first_name VARCHAR (55) DEFAULT '',
+    DROP points;
 
+-- 
 
 
 
