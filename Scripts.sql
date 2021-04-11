@@ -214,7 +214,24 @@ END $$
 
 DELIMITER ;
 
--- 
+-- Create table
+
+CREATE DATABASE IF NOT EXISTS sql_store2;
+
+USE sql_store2;
+CREATE TABLE IF NOT EXISTS customers
+(
+    customer_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR (50) NOT NULL,
+    last_name VARCHAR (50) NOT NULL,
+    birthdate DATE NOT NULL,
+    phone VARCHAR (50) NOT NULL,
+    address VARCHAR (50) NOT NULL,
+    city VARCHAR (50) NOT NULL,
+    state CHAR (2) NOT NULL,
+    email VARCHAR (255) NOT NULL UNIQUE,
+    points INT NOT NULL DEFAULT 0
+);
 
 
 
