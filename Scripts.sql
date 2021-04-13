@@ -76,6 +76,7 @@ WHERE invoice_total > (
 )
 
 -- List of products that have not been ordered
+
 SELECT *
 FROM products p
 WHERE NOT EXISTS (
