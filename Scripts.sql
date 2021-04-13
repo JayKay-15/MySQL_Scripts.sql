@@ -67,6 +67,7 @@ WHERE customer_id IN (
 )
 
 -- Get invoices larger than the client's average invoice
+
 SELECT *
 FROM invoices i
 WHERE invoice_total > (
