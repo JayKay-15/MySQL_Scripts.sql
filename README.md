@@ -1,1 +1,1 @@
-# SQL_Scripts.sql
+# MySQL_Scripts.sql
